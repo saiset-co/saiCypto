@@ -1,0 +1,41 @@
+<html>
+<head>
+  <title>SaiCryptoModule Admin Panel</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+<body>
+  <header>
+    <span style="color: rgba(0, 0, 0, 0.3); transition: none; text-align: center; line-height: 98px; border-width: 0px; margin: 0px; padding: 0px; letter-spacing: -3px; font-weight: 700; font-size: 78px;">SaiCryptoModule</span> Admin Panel
+  </header>
+  <form action="http://{{address}}:{{port}}/admin/post" method="post" style="padding: 10% 20% 20% 20%">
+  <div class="form-group">
+    <label for="keypath">Keypath</label>
+    <input type="text" class="form-control" name="keypath" id="keypath" value="{{keypath}}" placeholder="{{keypath}}">
+  </div>
+  <div class="form-group">
+    <label for="address">Host address</label>
+    <input type="text" class="form-control" name="address" id="address" value="{{address}}" placeholder="{{address}}">
+  </div>
+  <div class="form-group">
+    <label for="port">Host port</label>
+    <input type="text" class="form-control" name="port" id="port" value={{port}} placeholder="{{port}}">
+  </div>
+  <div class="form-group">
+    <label for="port">Callback</label>
+    <input type="text" class="form-control" name="callback" id="callback" value={{callback}} placeholder="{{callback}}">
+  </div>
+  <button type="submit" id="sbmt_btn" class="btn btn-primary">Submit</button>
+</form>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script>
+$("#sbmt_btn").click(function (e) {
+  e.preventDefault();
+  var $form = $('form');
+  $form.attr("action", $form.attr('action') + "?" + decodeURIComponent($form.serialize()));
+  $form.submit();
+});
+</script>
+</body>
+</html>

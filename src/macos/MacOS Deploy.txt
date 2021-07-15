@@ -1,0 +1,15 @@
+#!/bin/bash
+Echo «macdeployqt»
+/Applications/QT/5.9.1/clang_64/bin/macdeployqt build-SaiCryptoModule_clang_64bit-Release/SaiCryptoModule/SaiCryptoModule.app -qmldir=./build-SaiCryptoModule_clang_64bit-Release/SaiCryptoModule -verbose=3
+Echo «Changing lib paths»
+install_name_tool build-SaiCryptoModule_clang_64bit-Release/SaiCryptoModule/SaiCryptoModule.app/Contents/MacOS/SaiCryptoModule -change libcryptopp.dylib @rpath/libcryptopp.dylib
+install_name_tool build-SaiCryptoModule_clang_64bit-Release/SaiCryptoModule/SaiCryptoModule.app/Contents/MacOS/SaiCryptoModule -change libqhttpserver.0.dylib @rpath/libqhttpserver.0.dylib
+Echo «Removing old SaiCryptoModule directory»
+rm -r SaiCryptoModule
+echo «Creating new SaiCryptoModule directory»
+mkdir SaiCryptoModule
+cp -r build-SaiCryptoModule_clang_64bit-Release/SaiCryptoModule/SaiCryptoModule.app SaiCryptoModule/SaiCryptoModule.app
+echo «Removing old zip»
+Rm SaiCryptoModule.zip
+Echo «Creating new zip»
+zip -r -X SaiCryptoModule.zip SaiCryptoModule
